@@ -12,7 +12,7 @@ type Mutation {
     login(email: String!, password: String!): Auth
 addUser:(username: String!, email: String!, password:String!): Auth
 saveBook: (Book): User
-removeBook:(bookID: ID!): User
+removeBook:(bookId: ID!): User
   }
 
   type User {
