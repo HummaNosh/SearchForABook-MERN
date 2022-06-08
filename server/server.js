@@ -12,6 +12,12 @@ const { typeDefs, resolvers } = require('./schemas');
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: authMiddleware,
+  formatError(err) {
+    if (err.originalError instanceof AuthenticationError) {
+      return new Error('Authentication error');
+    }
+  },
 });
 
 // ----------------------------------------------------------
@@ -34,7 +40,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
   server.applyMiddleware({ app });
 
 db.once('open', () => {
-  app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
+  app.listen(PORT, () => console.log(` Wahoo! Your app is now listening on localhost:${PORT}`));
 })};
 
 // hn start the server
