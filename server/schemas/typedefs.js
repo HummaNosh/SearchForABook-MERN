@@ -10,21 +10,21 @@ type Query {
 
    type Mutation {
     login(email: String!, password: String!): Auth
-  addUser:(username: String!, email: String!, password:String!): Auth
-  saveBook: [bookInfo: BookInput!]: User
-  removeBook:[bookId: ID!]: User
+  addUser(username: String!, email: String!, password:String!): Auth
+  saveBook(bookInfo: BookInput!): User
+  removeBook(bookId: ID!): User
   }
   
   type User {
     _id: ID!
     username: String!
-    email: String!
-    bookCount: Int!
+    email: String
+    bookCount: Int
     savedBooks: [Book]
   }
   type Book{
-    bookId:
-    authors: [String]
+    bookId: ID!
+    authors:[String]
     description: String!
     title: String!
     image: String!
